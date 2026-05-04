@@ -71,10 +71,10 @@ model.to(device)
 
 # Provide the list of paths to your chosen videos her
 videos = [
-        r'C:\Users\Norah\OneDrive\GitHub\arti560-computer-vision-labs\lab08-pose-estimation\media\yoga.mp4'
+        r'C:\Users\Norah\OneDrive\GitHub\arti560-computer-vision-labs\lab08-pose-estimation\media\occlusion-example.mp4'
         ]
 
-file_name =  r'C:\Users\Norah\OneDrive\GitHub\arti560-computer-vision-labs\lab08-pose-estimation\media\yoga.mp4'
+file_name =  r'C:\Users\Norah\OneDrive\GitHub\arti560-computer-vision-labs\lab08-pose-estimation\media\occlusion-example.mp4'
 vid_path = file_name
 save_name= "yolo_video_output"
 
