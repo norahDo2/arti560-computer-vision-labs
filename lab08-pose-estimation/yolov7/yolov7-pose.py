@@ -80,22 +80,30 @@ save_name= "yolo_video_output"
 
 cap = cv2.VideoCapture(vid_path)
 fps = int(cap.get(cv2.CAP_PROP_FPS))
-ret, frame = cap.read()
-h, w, _ = frame.shape
-
-# May need to change the w, h as letterbox function reshapes the image.
-#out = cv2.VideoWriter('./' + file_name + '_yolov7', 
-#                       cv2.VideoWriter_fourcc(*'mp4v'), 
-#                       fps, (w, h))
-
-out = cv2.VideoWriter(f"{save_name}_yolo7.avi",
-                      cv2.VideoWriter_fourcc('M','J','P','G'),
-                      10, (w, h))
 
 #-------------------------------------------------------------------------------#
 
 
 if __name__ == '__main__':
+    ret, frame = cap.read()
+    if not ret:
+        print('Unable to read frame. Exiting ..')
+        exit()
+    
+    # Process first frame to determine output size
+    img, fps_ = pose_video(frame)
+    h_out, w_out, _ = img.shape
+    
+    out = cv2.VideoWriter(f"{save_name}_yolo7.avi",
+                          cv2.VideoWriter_fourcc('M','J','P','G'),
+                          10, (w_out, h_out))
+    
+    # Write first frame
+    cv2.putText(img, 'FPS : {:.2f}'.format(fps_), (200, 40), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,255,0), 2, cv2.LINE_AA)
+    cv2.putText(img, 'YOLOv7', (20, 40), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,255,0), 2, cv2.LINE_AA)
+    cv2.imshow('Output', img)
+    out.write(img)
+    
     while True:
         ret, frame = cap.read()
         
@@ -108,8 +116,8 @@ if __name__ == '__main__':
         cv2.putText(img, 'FPS : {:.2f}'.format(fps_), (200, 40), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,255,0), 2, cv2.LINE_AA)
         cv2.putText(img, 'YOLOv7', (20, 40), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,255,0), 2, cv2.LINE_AA)
 
-        cv2.imshow('Output', img[...,::-1])
-        out.write(img[...,::-1])
+        cv2.imshow('Output', img)
+        out.write(img)
         key = cv2.waitKey(1)
         if key == ord('q'):
         	break
