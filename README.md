@@ -21,12 +21,9 @@ This repository contains code, datasets, and exercises for various **computer vi
 | 6  | Motion Estimation |
 | 7  |  Action Recognition |
 | 8  |  Pose Estimation |
-| 9  |  |
-| 10 |  |
-| 11 |  |
-| 12 |  |
-| 13 |  |
-| 14 |  |
+| 9  |  Depth Estimation |
+| 10 |  Visual Representations |
+| 11 |  Vision and Language |
 
 ## Installation Using Conda
 
